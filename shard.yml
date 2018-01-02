@@ -1,0 +1,14 @@
+name: contours
+version: 0.1.0
+
+authors:
+  - Edward Loveall <edward@edwardloveall.com>
+
+description: |
+  Create contour maps of terrain data
+
+dependencies:
+  crystaledge:
+    github: unn4m3d/crystaledge
+
+license: MIT
