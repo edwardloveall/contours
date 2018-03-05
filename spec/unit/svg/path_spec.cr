@@ -22,6 +22,12 @@ describe SVG::Path do
       end
     end
   end
+
+  describe "#tag_attributes" do
+    it "returns the path instructions with `d:`" do
+      path.tag_attributes.should eq({ d: "M10 10 L 90 10 L 90 90 L 10 90" })
+    end
+  end
 end
 
 private def path

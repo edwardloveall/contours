@@ -7,6 +7,10 @@ class SVG::Path
     "path"
   end
 
+  def tag_attributes
+    { d: raw_path_instructions }
+  end
+
   def raw_path_instructions
     string = "M"
     point_string = points.map do |point|
