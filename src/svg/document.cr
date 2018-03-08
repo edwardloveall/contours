@@ -18,4 +18,10 @@ class SVG::Document
       end
     end
   end
+
+  def write(file_location)
+    file = File.open(file_location, "w") do |file|
+      file.write(text_content.to_slice)
+    end
+  end
 end

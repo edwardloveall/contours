@@ -31,6 +31,20 @@ describe SVG::Document do
       end
     end
   end
+
+  describe "#write" do
+    it "writes the svg file to a path" do
+      location = "temp.svg"
+
+      begin
+        document.write(location)
+
+        File.exists?(location).should be_true
+      ensure
+        FileUtils.rm_r(location)
+      end
+    end
+  end
 end
 
 private def document
