@@ -20,10 +20,12 @@ describe SVG::Document do
         ]
         path.close!
         svg.elements << path
+        svg.stylesheet = "path { fill: red; }"
 
         svg.text_content.should eq <<-SVG
         <?xml version="1.0"?>
         <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <style>path { fill: red; }</style>
           <path d="M20 0 L 0 30 Z"/>
         </svg>
 
