@@ -3,6 +3,7 @@ require "../spec_helper"
 describe "#angle_between" do
   context "if the start point is at 0, 0" do
     it "returns the angle of point 2" do
+      tracer = Contours::Tracer.new
       point1 = Point.new(0.0, 0.0)
       point2_q1 = Point.new(10.0, 10.0)
       point2_q2 = Point.new(-10.0, 10.0)
@@ -23,6 +24,7 @@ describe "#angle_between" do
 
   context "if the start point is not at 0, 0" do
     it "returns the angle of point 2 as if point 1 was at the origin" do
+      tracer = Contours::Tracer.new
       point1 = Point.new(5.0, 5.0)
       point2_q1 = Point.new(15.0, 15.0)
       point2_q2 = Point.new(-5.0, 15.0)
@@ -40,10 +42,34 @@ describe "#angle_between" do
       angle4.should be_close(315.deg_to_rad, delta)
     end
   end
-end
 
-private def tracer
-  Contours::Tracer.new
+  describe "#previous_point" do
+    context "if there is more than one point that has been used so far" do
+      it "returns the second to last point" do
+        tracer = Contours::Tracer.new
+        first_point = Point.new(5.0, 5.0)
+        second_point = Point.new(10.0, 10.0)
+        third_point = Point.new(15.0, 15.0)
+        tracer.used_points = [first_point, second_point, third_point]
+
+        point = tracer.previous_point
+
+        point.should eq(second_point)
+      end
+    end
+
+    context "if there only one point that has been used so far" do
+      it "returns the only point" do
+        tracer = Contours::Tracer.new
+        first_point = Point.new(5.0, 5.0)
+        tracer.used_points = [first_point]
+
+        point = tracer.previous_point
+
+        point.should eq(first_point)
+      end
+    end
+  end
 end
 
 private def delta
