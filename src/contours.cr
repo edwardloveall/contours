@@ -1,4 +1,4 @@
 require "crystaledge"
-require "./charms/*"
+require "./charms/**"
 require "./contours/*"
 require "./svg/*"
