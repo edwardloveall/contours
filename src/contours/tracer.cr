@@ -1,6 +1,4 @@
 class Contours::Tracer
-  TWO_PI = Math::PI * 2.0
-
   property used_points : Array(Point)
   @used_points = [] of Point
 
