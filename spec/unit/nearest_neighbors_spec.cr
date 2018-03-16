@@ -38,5 +38,20 @@ describe Contours::NearestNeighbors do
         result.should eq(near_points)
       end
     end
+
+    it "does not include the origin point" do
+      origin = Point.new(0.0, 0.0)
+      near_points = [
+        Point.new(0.0, 1.0),
+        Point.new(0.0, -1.0)
+      ]
+      finder = Contours::NearestNeighbors.new(
+        origin: origin, points: near_points + [origin]
+      )
+
+      result = finder.find(at_least: 1)
+
+      result.should eq(near_points)
+    end
   end
 end
