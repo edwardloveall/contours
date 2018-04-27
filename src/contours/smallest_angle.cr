@@ -2,6 +2,7 @@ class Contours::SmallestAngle
   setter :origin, :points, :offset_angle
 
   def initialize(@origin : Point, @points : Array(Point), @offset_angle = 0.0)
+    @offset_angle += 0.00001
   end
 
   def find_point
