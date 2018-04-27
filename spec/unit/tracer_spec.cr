@@ -1,50 +1,37 @@
 require "../spec_helper"
 
 describe ".create_outline" do
-  it "returns a list of points" do
+  it "returns a list of points in order around the shape" do
     points = [
-      Point.new(17, 5),
-      Point.new(20, 5),
-      Point.new(23, 7),
-      Point.new(20, 8),
-      Point.new(18, 9),
-      Point.new(26, 9),
-      Point.new(15, 10),
-      Point.new(19, 10),
-      Point.new(24, 10),
-      Point.new(22, 11),
-      Point.new(15, 12),
-      Point.new(18, 13),
-      Point.new(20, 13),
-      Point.new(24, 13),
-      Point.new(22, 14),
-      Point.new(15, 15),
-      Point.new(18, 15),
-      Point.new(19, 16),
-      Point.new(23, 16),
-      Point.new(25, 16)
+      Point.new(21, -2),
+      Point.new(22, -2),
+      Point.new(23, -2),
+      Point.new(20, -1),
+      Point.new(21, -1),
+      Point.new(22, -1),
+      Point.new(23, -1),
+      Point.new(21, 0),
+      Point.new(22, 0),
+      Point.new(23, 0),
+      Point.new(24, 0),
+      Point.new(22, 1),
+      Point.new(23, 1)
     ]
     outline = [
-      Point.new(20, 5),
-      Point.new(23, 7),
-      Point.new(26, 9),
-      Point.new(24, 10),
-      Point.new(24, 13),
-      Point.new(25, 16),
-      Point.new(23, 16),
-      Point.new(19, 16),
-      Point.new(18, 15),
-      Point.new(15, 15),
-      Point.new(15, 12),
-      Point.new(15, 10),
-      Point.new(18, 9),
-      Point.new(17, 5)
+      Point.new(23, -2),
+      Point.new(23, -1),
+      Point.new(24, 0),
+      Point.new(23, 1),
+      Point.new(22, 1),
+      Point.new(21, 0),
+      Point.new(20, -1),
+      Point.new(21, -2),
+      Point.new(22, -2)
     ]
     tracer = Contours::Tracer.new(points: points)
 
     result = tracer.create_outline
 
-    tracer.debug
     result.should eq(outline)
   end
 end
