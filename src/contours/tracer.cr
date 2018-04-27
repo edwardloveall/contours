@@ -16,6 +16,7 @@ class Contours::Tracer
     loop do
       @used_points.push(next_point)
       if @used_points.last == @used_points.first
+        @used_points.pop
         break
       end
     end
