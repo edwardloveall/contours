@@ -8,11 +8,11 @@ class Contours::Tracer
   end
 
   def initialize(@points : Array(Point))
-    start_point = StartPointFinder.new(points: @points).find
-    @used_points.push(start_point)
   end
 
   def create_outline
+    start_point = StartPointFinder.new(points: @points).find
+    @used_points.push(start_point)
     loop do
       @used_points.push(next_point)
       if @used_points.last == @used_points.first
@@ -37,7 +37,6 @@ class Contours::Tracer
       origin: anchor_point, points: neighbors, offset_angle: backwards_direction
     ).find_point
   end
-
 
   def angle_between(point1 : Point, point2 : Point)
     biased_point2 = point2 - point1
