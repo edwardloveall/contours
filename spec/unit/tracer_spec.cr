@@ -34,6 +34,60 @@ describe ".create_outline" do
 
     result.should eq(outline)
   end
+
+  context "when there's a hollow center" do
+    it "returns an ordered list of points around the shape" do
+      points = [
+        Point.new(29, -4),
+        Point.new(30, -4),
+        Point.new(32, -4),
+        Point.new(28, -3),
+        Point.new(29, -3),
+        Point.new(30, -3),
+        Point.new(31, -3),
+        Point.new(32, -3),
+        Point.new(33, -3),
+        Point.new(28, -2),
+        Point.new(29, -2),
+        Point.new(32, -2),
+        Point.new(33, -2),
+        Point.new(28, -1),
+        Point.new(29, -1),
+        Point.new(32, -1),
+        Point.new(33, -1),
+        Point.new(29, 0),
+        Point.new(30, 0),
+        Point.new(31, 0),
+        Point.new(32, 0),
+        Point.new(33, 0),
+        Point.new(30, 1),
+        Point.new(31, 1),
+        Point.new(32, 1)
+      ]
+      outline = [
+        Point.new(32, -4),
+        Point.new(33, -3),
+        Point.new(33, -2),
+        Point.new(33, -1),
+        Point.new(33, 0),
+        Point.new(32, 1),
+        Point.new(31, 1),
+        Point.new(30, 1),
+        Point.new(29, 0),
+        Point.new(28, -1),
+        Point.new(28, -2),
+        Point.new(28, -3),
+        Point.new(29, -4),
+        Point.new(30, -4),
+        Point.new(31, -3)
+      ]
+      tracer = Contours::Tracer.new(points: points)
+
+      result = tracer.create_outline
+
+      result.should eq(outline)
+    end
+  end
 end
 
 describe "#angle_between" do
