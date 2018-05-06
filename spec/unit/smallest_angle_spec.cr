@@ -23,7 +23,7 @@ describe Contours::SmallestAngle do
       end
     end
 
-    context "when the offset angle is 0 radians" do
+    context "when the offset angle is 45 deg (PI/4 radians)" do
       it "finds the point with the smallest clockwise angle" do
         target = Point.new(4.0, 8.0)
         points = [
