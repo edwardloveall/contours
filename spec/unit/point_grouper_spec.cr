@@ -30,7 +30,37 @@ describe Contours::PointGrouper do
 
         groups = Contours::PointGrouper.group(points)
 
+        groups.size.should eq(1)
         groups.first.should contain_exactly(points)
+      end
+    end
+
+    context "when there are multiple groups" do
+      it "returns multiple point groups" do
+        small = [
+          Point.new(11, 10),
+          Point.new(12, 10),
+        ]
+        medium = [
+          Point.new(6, 4),
+          Point.new(6, 5),
+          Point.new(7, 5),
+        ]
+        large = [
+          Point.new(2, 3),
+          Point.new(3, 3),
+          Point.new(2, 4),
+          Point.new(3, 4)
+        ]
+        points = small + medium + large
+
+        groups = Contours::PointGrouper.group(points)
+        groups.sort_by!(&.size)
+
+        groups.size.should eq(3)
+        groups[0].should contain_exactly(small)
+        groups[1].should contain_exactly(medium)
+        groups[2].should contain_exactly(large)
       end
     end
   end
