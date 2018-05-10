@@ -5,13 +5,15 @@ class Contours::PointGrouper
     new(points: points).group
   end
 
-  def initialize(@points : Array(Point))
+  def initialize(points : Array(Point))
+    @points = points.clone
   end
 
   def group : Array(Array(Point))
     groups = [] of Array(Point)
     while !@points.empty?
-      groups.push(find_neighbors(@points.first))
+      start_point = @points.shift
+      groups.push(find_neighbors(start_point) + [start_point])
     end
     groups
   end

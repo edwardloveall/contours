@@ -10,6 +10,15 @@ describe Contours::PointGrouper do
       end
     end
 
+    context "when there is just one point" do
+      it "returns a group of that one point" do
+        points = [Point.new(0, 0)]
+        groups = Contours::PointGrouper.group(points)
+
+        groups.should eq([points])
+      end
+    end
+
     context "when there is a single group" do
       it "returns all points in one grouping" do
         points = [
