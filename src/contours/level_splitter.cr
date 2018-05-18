@@ -1,27 +1,21 @@
 class Contours::LevelSplitter
-  def self.split(
-    points : Array(HeightPoint),
-    start : Int32 = 0,
-    step : Int32 = 10
-  )
-    new.split(points, start, step)
+  def self.split(points : Array(HeightPoint), step : Int32 = 10)
+    new.split(points, step)
   end
 
-  def split(points : Array(HeightPoint), start : Int32 = 0, step : Int32 = 10)
-    return [] of Array(HeightPoint) if points.empty?
-    max = points.max_of { |point| point.height }.ceil.to_i
-    range_starts = (0..max).step(step).to_a
-    ranges = range_starts.map_with_index do |low, index|
-      high = range_starts[index + 1]?
-      if !high.nil?
-        (low...high)
-      else
-        (low..max)
-      end
+  def split(points : Array(HeightPoint), step : Int32 = 10)
+    levels = [] of Array(HeightPoint)
+    return levels if points.empty?
+    start = points.min_of { |point| point.height }
+    current_level = start + step
+
+    while !points.empty?
+      level_points = points.select { |point| point.height < current_level }
+      points = points - level_points
+      levels.push(level_points)
+      current_level += step
     end
 
-    ranges.map do |range|
-      points.select { |point| range.includes?(point.height) }
-    end
+    levels
   end
 end

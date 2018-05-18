@@ -16,7 +16,7 @@ describe Contours::LevelSplitter do
       HeightPoint.new(height: height, point: dummy_point)
     end
 
-    levels = Contours::LevelSplitter.split(points, start: 0, step: 10)
+    levels = Contours::LevelSplitter.split(points, step: 10)
 
     levels[0].should contain_exactly([
       HeightPoint.new(height: 1, point: dummy_point)
