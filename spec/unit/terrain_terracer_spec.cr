@@ -1,9 +1,9 @@
 require "../spec_helper"
 
-describe Contours::LevelSplitter do
+describe Contours::TerrainTerracer do
   context "when there are no points" do
     it "returns an empty array" do
-      levels = Contours::LevelSplitter.split([] of HeightPoint)
+      levels = Contours::TerrainTerracer.terrace([] of HeightPoint)
 
       levels.should eq([] of HeightPoint)
     end
@@ -16,7 +16,7 @@ describe Contours::LevelSplitter do
       HeightPoint.new(height: height, point: dummy_point)
     end
 
-    levels = Contours::LevelSplitter.split(points, step: 10)
+    levels = Contours::TerrainTerracer.terrace(points, step: 10)
 
     levels[0].should contain_exactly([
       HeightPoint.new(height: 1, point: dummy_point)
