@@ -1,1 +1,1 @@
-alias Point = CrystalEdge::Vector2
+alias Point = CrystalEdge::Vector3
