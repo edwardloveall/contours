@@ -1,6 +1,6 @@
 class SVG::Path
   property :points
-  @points = Array(CrystalEdge::Vector2).new
+  @points = Array(CrystalEdge::Vector3).new
   @closed = false
 
   def tag_name

@@ -15,8 +15,8 @@ describe SVG::Document do
         svg = document
         path = SVG::Path.new
         path.points = [
-          CrystalEdge::Vector2.new(x: 20.0, y: 0.0),
-          CrystalEdge::Vector2.new(x: 0.0, y: 30.0)
+          CrystalEdge::Vector3.new(x: 20.0, y: 0.0),
+          CrystalEdge::Vector3.new(x: 0.0, y: 30.0)
         ]
         path.close!
         svg.elements << path

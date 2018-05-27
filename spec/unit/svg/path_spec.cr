@@ -33,10 +33,10 @@ end
 private def path
   SVG::Path.new.tap do |path|
     path.points = [
-      CrystalEdge::Vector2.new(x: 10.0, y: 10.0),
-      CrystalEdge::Vector2.new(x: 90.0, y: 10.0),
-      CrystalEdge::Vector2.new(x: 90.0, y: 90.0),
-      CrystalEdge::Vector2.new(x: 10.0, y: 90.0)
+      CrystalEdge::Vector3.new(x: 10.0, y: 10.0),
+      CrystalEdge::Vector3.new(x: 90.0, y: 10.0),
+      CrystalEdge::Vector3.new(x: 90.0, y: 90.0),
+      CrystalEdge::Vector3.new(x: 10.0, y: 90.0)
     ]
   end
 end
